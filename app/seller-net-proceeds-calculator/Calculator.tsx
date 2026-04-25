@@ -206,7 +206,7 @@ export default function Calculator() {
             <ins
                 className="adsbygoogle"
                 style={{ display: 'block' }}
-                data-ad-client="ca-pub-XXXXXXXX"
+                data-ad-client="ca-pub-2489602416184279"
                 data-ad-slot="XXXXXXXX"
                 data-ad-format="auto"
                 data-full-width-responsive="true"
@@ -469,6 +469,91 @@ export default function Calculator() {
                 </div>
               </section>
             </div>
+
+            <section className="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">How this seller net proceeds calculator works</h2>
+                <p className="mt-4 text-slate-600 leading-7">
+                  This seller net proceeds calculator estimates how much money you may walk away with after selling your home.
+                  It uses your estimated sale price, mortgage balance, real estate commission, seller concessions, and common
+                  seller-side closing costs to create a simple net proceeds estimate.
+                </p>
+                <p className="mt-4 text-slate-600 leading-7">
+                  Because closing costs can vary by location, this calculator also uses your ZIP code to apply localized fee
+                  assumptions. You can edit those assumptions if you already know your attorney fees, title fees, transfer taxes,
+                  recording fees, or other local costs.
+                </p>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">What costs are included?</h2>
+                <p className="mt-4 text-slate-600 leading-7">
+                  A seller net estimate usually includes the major costs that reduce your proceeds at closing. Your actual costs
+                  may vary based on your state, county, purchase agreement, lender payoff, and negotiated seller concessions.
+                </p>
+
+                <ul className="mt-5 list-disc space-y-2 pl-6 text-slate-600">
+                  <li>Real estate agent commission</li>
+                  <li>Mortgage payoff or remaining loan balance</li>
+                  <li>Attorney or title fees</li>
+                  <li>Transfer taxes</li>
+                  <li>Recording fees</li>
+                  <li>Seller concessions or repair credits</li>
+                  <li>Other local closing fees</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
+
+                <div className="mt-6 space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold">What are seller net proceeds?</h3>
+                    <p className="mt-2 text-slate-600 leading-7">
+                      Seller net proceeds are the estimated amount you keep after subtracting your mortgage payoff, commission,
+                      closing costs, concessions, and other seller expenses from the final sale price.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">How do I calculate my net proceeds from selling a house?</h3>
+                    <p className="mt-2 text-slate-600 leading-7">
+                      Start with your expected sale price, then subtract your loan payoff, agent commission, seller closing costs,
+                      and any credits or concessions you agree to pay. The remaining amount is your estimated net proceeds.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">Are seller closing costs the same in every ZIP code?</h3>
+                    <p className="mt-2 text-slate-600 leading-7">
+                      No. Seller closing costs can vary by state, county, municipality, and transaction type. That is why this
+                      calculator uses ZIP-based defaults and lets you edit the individual fee values.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">Why is agent commission included?</h3>
+                    <p className="mt-2 text-slate-600 leading-7">
+                      Commission is often one of the largest seller expenses. Including it gives you a more realistic estimate of
+                      what you may walk away with after the sale closes.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">Is this a final closing statement?</h3>
+                    <p className="mt-2 text-slate-600 leading-7">
+                      No. This calculator is an estimate for planning purposes. Your final numbers should come from your real
+                      estate agent, closing attorney, title company, lender, or settlement statement.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
           </div>
 
           <aside className="hidden xl:block">
