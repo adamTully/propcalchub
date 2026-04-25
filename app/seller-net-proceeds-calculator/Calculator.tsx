@@ -134,6 +134,15 @@ export default function Calculator() {
     });
   }, [feePreset]);
 
+  useEffect(() => {
+  try {
+    // @ts-ignore
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {
+    console.error(e);
+  }
+}, []);
+
   const salePrice = parseNumber(salePriceInput);
   const mortgageBalance = parseNumber(mortgageBalanceInput);
   const commissionRate = parseNumber(commissionInput);
@@ -193,8 +202,15 @@ export default function Calculator() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
-        <div className="mb-6 rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500">
-          Top ad slot
+        <div className="mb-6">
+            <ins
+                className="adsbygoogle"
+                style={{ display: 'block' }}
+                data-ad-client="ca-pub-XXXXXXXX"
+                data-ad-slot="XXXXXXXX"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+            />
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
