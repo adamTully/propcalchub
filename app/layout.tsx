@@ -24,22 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2489602416184279"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-      </head>
+    <html lang="en">
+  <head>
+    <meta name="google-adsense-account" content="ca-pub-2489602416184279" />
+    <Script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2489602416184279"
+      crossOrigin="anonymous"
+      strategy="afterInteractive"
+    />
+  </head>
 
-      <body className="min-h-full flex flex-col">
-        {children}
-      </body>
-    </html>
+  <body>
+    {children}
+  </body>
+</html>
   );
 }
