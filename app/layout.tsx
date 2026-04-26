@@ -35,9 +35,30 @@ export default function RootLayout({
     />
   </head>
 
-  <body>
+  <body className="min-h-full flex flex-col">
+  <main className="flex-1">
     {children}
-  </body>
+  </main>
+
+  <footer className="border-t border-slate-200 bg-white">
+    <div className="mx-auto max-w-6xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-600">
+      
+      <div>
+        © {new Date().getFullYear()} PropCalcHub
+      </div>
+
+      <div className="mt-3 sm:mt-0 flex gap-6">
+        <a href="/privacy-policy" className="hover:text-slate-900">
+          Privacy Policy
+        </a>
+        <a href="/contact" className="hover:text-slate-900">
+          Contact
+        </a>
+      </div>
+
+    </div>
+  </footer>
+</body>
 </html>
   );
 }
