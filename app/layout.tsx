@@ -26,14 +26,31 @@ export default function RootLayout({
   return (
     <html lang="en">
   <head>
-    <meta name="google-adsense-account" content="ca-pub-2489602416184279" />
-    <Script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2489602416184279"
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-    />
-  </head>
+  <meta name="google-adsense-account" content="ca-pub-2489602416184279" />
+
+  {/* AdSense */}
+  <Script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2489602416184279"
+    crossOrigin="anonymous"
+    strategy="afterInteractive"
+  />
+
+  {/* Google Analytics */}
+  <Script
+    src={`https://www.googletagmanager.com/gtag/js?id=G-PV4118YBZW`}
+    strategy="afterInteractive"
+  />
+
+  <Script id="google-analytics" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PV4118YBZW');
+    `}
+  </Script>
+</head>
 
   <body className="min-h-full flex flex-col">
   <main className="flex-1">
