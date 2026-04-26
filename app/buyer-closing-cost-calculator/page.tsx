@@ -1,4 +1,4 @@
-import BuyerClosingCostCalculator from './calculator';
+import BuyerClosingCostCalculator from './Calculator';
 
 export const metadata = {
   title: 'Buyer Closing Cost Calculator | PropCalcHub',
