@@ -550,6 +550,14 @@ export default function Calculator() {
                       estate agent, closing attorney, title company, lender, or settlement statement.
                     </p>
                   </div>
+                  <div className="mt-6">
+                        <a
+                        href="/buyer-closing-cost-calculator"
+                        className="text-sm font-medium text-blue-600 underline hover:text-blue-800"
+                        >
+                        Buying instead? Estimate your buyer closing costs →
+                        </a>
+                    </div>
                 </div>
               </div>
             </section>
