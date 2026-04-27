@@ -1,8 +1,43 @@
+'use client';
+
+import { useEffect } from 'react';
+
+function AdSlot({
+  slot,
+  className = '',
+  minHeight = 'min-h-[90px]',
+}: {
+  slot: string;
+  className?: string;
+  minHeight?: string;
+}) {
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  return (
+    <div className={`overflow-hidden rounded-2xl bg-white ${minHeight} ${className}`}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-2489602416184279"
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <div className="mx-auto max-w-6xl px-6 py-16">
-        {/* HERO */}
         <section className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
             Real Estate Calculators
@@ -18,12 +53,10 @@ export default function Home() {
           </p>
         </section>
 
-        {/* TOP AD */}
-        <div className="mt-10 rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-center text-sm text-slate-400">
-          Advertisement
+        <div className="mt-10">
+          <AdSlot slot="6968136162" minHeight="min-h-[90px]" />
         </div>
 
-        {/* CALCULATOR CARDS */}
         <section className="mt-12 grid gap-6 md:grid-cols-2">
           <a
             href="/seller-net-proceeds-calculator"
@@ -68,14 +101,14 @@ export default function Home() {
           </a>
         </section>
 
-        {/* MID AD */}
-        <div className="mt-12 rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-400">
-          Advertisement
+        <div className="mt-12">
+          <AdSlot slot="1715809480" minHeight="min-h-[250px]" />
         </div>
 
-        {/* SEO CONTENT */}
         <section className="mx-auto mt-14 max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold">Free real estate calculators for smarter decisions</h2>
+          <h2 className="text-2xl font-semibold">
+            Free real estate calculators for smarter decisions
+          </h2>
 
           <div className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
             <p>
@@ -92,7 +125,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* BOTTOM CTA */}
         <section className="mt-12 text-center">
           <h2 className="text-2xl font-semibold">More calculators coming soon</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">

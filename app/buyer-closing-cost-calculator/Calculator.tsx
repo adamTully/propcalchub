@@ -2,6 +2,38 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
+function AdSlot({
+  slot,
+  className = '',
+  minHeight = 'min-h-[90px]',
+}: {
+  slot: string;
+  className?: string;
+  minHeight?: string;
+}) {
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  return (
+    <div className={`overflow-hidden rounded-2xl bg-white ${minHeight} ${className}`}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-2489602416184279"
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
+}
+
 function MoneyInput({
   label,
   value,
@@ -127,14 +159,6 @@ export default function BuyerClosingCostCalculator() {
     setInspectionAndAppraisalInput(numberFormatter.format(feePreset.inspectionAndAppraisal));
   }, [feePreset]);
 
-  useEffect(() => {
-    try {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
 
   const homePrice = parseNumber(homePriceInput);
   const downPayment = parseNumber(downPaymentInput);
@@ -182,22 +206,12 @@ export default function BuyerClosingCostCalculator() {
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
         <div className="mb-6">
-          <ins
-            className="adsbygoogle"
-            style={{ display: 'block' }}
-            data-ad-client="ca-pub-2489602416184279"
-            data-ad-slot="XXXXXXXX"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <AdSlot slot="9538459184" minHeight="min-h-[90px]" />
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
-          <aside className="hidden xl:block">
-            <div className="sticky top-6 min-h-[600px] rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500">
-              Left sidebar ad
-            </div>
-          </aside>
+          {/* Left sidebar intentionally hidden to preserve the desktop 3-column layout */}
+          <aside className="hidden xl:block" aria-hidden="true" />
 
           <div>
             <section className="mb-8 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
@@ -290,9 +304,7 @@ export default function BuyerClosingCostCalculator() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500">
-                    In-card ad slot
-                  </div>
+                  <AdSlot slot="6992186895" minHeight="min-h-[120px]" />
                 </div>
               </section>
 
@@ -399,6 +411,10 @@ export default function BuyerClosingCostCalculator() {
               </section>
             </div>
 
+            <div className="mt-6">
+              <AdSlot slot="1189421214" minHeight="min-h-[250px]" />
+            </div>
+
             <section className="mt-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <h2 className="text-2xl font-semibold">
                 How this buyer closing cost calculator works
@@ -468,11 +484,8 @@ export default function BuyerClosingCostCalculator() {
             </section>
           </div>
 
-          <aside className="hidden xl:block">
-            <div className="sticky top-6 min-h-[600px] rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500">
-              Right sidebar ad
-            </div>
-          </aside>
+          {/* Right sidebar intentionally hidden to preserve the desktop 3-column layout */}
+          <aside className="hidden xl:block" aria-hidden="true" />
         </div>
       </div>
     </main>
