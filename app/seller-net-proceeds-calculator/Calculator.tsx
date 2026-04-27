@@ -2,6 +2,38 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
+function AdSlot({
+  slot,
+  className = '',
+  minHeight = 'min-h-[90px]',
+}: {
+  slot: string;
+  className?: string;
+  minHeight?: string;
+}) {
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  return (
+    <div className={`overflow-hidden rounded-2xl bg-white ${minHeight} ${className}`}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-2489602416184279"
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
+}
+
 function MoneyInput({
   label,
   value,
@@ -19,7 +51,9 @@ function MoneyInput({
     <div>
       <label className="mb-2 block text-sm font-medium text-slate-700">{label}</label>
       <div className="relative">
-        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+          $
+        </span>
         <input
           className={`w-full rounded-2xl border py-3 pl-8 pr-4 outline-none transition ${
             readOnly
@@ -134,15 +168,6 @@ export default function Calculator() {
     });
   }, [feePreset]);
 
-  useEffect(() => {
-  try {
-    // @ts-ignore
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch (e) {
-    console.error(e);
-  }
-}, []);
-
   const salePrice = parseNumber(salePriceInput);
   const mortgageBalance = parseNumber(mortgageBalanceInput);
   const commissionRate = parseNumber(commissionInput);
@@ -200,27 +225,29 @@ export default function Calculator() {
   });
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
+    <main className="min-h-screen bg-slate-50 pb-24 text-slate-900 xl:pb-0">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
+        {/* TOP AD */}
         <div className="mb-6">
-            <ins
-                className="adsbygoogle"
-                style={{ display: 'block' }}
-                data-ad-client="ca-pub-2489602416184279"
-                data-ad-slot="XXXXXXXX"
-                data-ad-format="auto"
-                data-full-width-responsive="true"
+          <AdSlot
+            slot="4273170546"
+            minHeight="min-h-[90px]"
             />
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
+          {/* LEFT SIDEBAR AD - paused for initial AdSense review / UX.
           <aside className="hidden xl:block">
-            <div className="sticky top-6 rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500 min-h-[600px]">
-              Left sidebar ad
+            <div className="sticky top-6">
+              <AdSlot label="Left sidebar ad" minHeight="min-h-[600px]" />
             </div>
           </aside>
+          */}
+
+          <aside className="hidden xl:block" aria-hidden="true" />
 
           <div>
+            {/* HERO */}
             <section className="mb-8 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <p className="mb-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-600">
                 Localized seller estimate
@@ -229,11 +256,12 @@ export default function Calculator() {
                 Seller Net Proceeds Calculator
               </h1>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-                Estimate how much you may walk away with after selling your home using your ZIP code,
-                mortgage balance, commission, and seller-side closing costs.
+                Estimate how much you may walk away with after selling your home using your ZIP
+                code, mortgage balance, commission, and seller-side closing costs.
               </p>
             </section>
 
+            {/* CALCULATOR + RESULTS */}
             <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
               <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
                 <h2 className="text-2xl font-semibold">Estimate inputs</h2>
@@ -283,6 +311,7 @@ export default function Calculator() {
                         inputMode="decimal"
                       />
                     </div>
+
                     <MoneyInput
                       label="Seller concessions"
                       value={sellerConcessionsInput}
@@ -325,9 +354,11 @@ export default function Calculator() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500">
-                    In-card ad slot
-                  </div>
+                  {/* IN-CARD AD */}
+                  <AdSlot
+                    slot="5263338100"
+                    minHeight="min-h-[120px]"
+                    />
                 </div>
               </section>
 
@@ -434,6 +465,15 @@ export default function Calculator() {
               </section>
             </div>
 
+            {/* MID-CONTENT AD */}
+            <div className="mt-6">
+              <AdSlot
+                slot="1204898936"
+                minHeight="min-h-[250px]"
+                />
+            </div>
+
+            {/* CONTEXT + RELATED */}
             <div className="mt-6 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
               <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
                 <h3 className="text-xl font-semibold">Helpful context</h3>
@@ -452,36 +492,45 @@ export default function Calculator() {
               <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
                 <h3 className="text-xl font-semibold">Related tools</h3>
                 <div className="mt-4 grid gap-3">
-                  {[
-                    'Buyer Closing Cost Calculator',
-                    'Monthly Payment Calculator',
-                    'Offer Comparison Tool',
-                    'Rent vs Sell Calculator',
-                  ].map((tool) => (
-                    <button
-                      key={tool}
-                      className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
-                    >
-                      <span>{tool}</span>
-                      <span>→</span>
-                    </button>
-                  ))}
+                  <a
+                    href="/buyer-closing-cost-calculator"
+                    className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  >
+                    <span>Buyer Closing Cost Calculator</span>
+                    <span>→</span>
+                  </a>
+
+                  {['Monthly Payment Calculator', 'Offer Comparison Tool', 'Rent vs Sell Calculator'].map(
+                    (tool) => (
+                      <button
+                        key={tool}
+                        className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
+                      >
+                        <span>{tool}</span>
+                        <span>→</span>
+                      </button>
+                    ),
+                  )}
                 </div>
               </section>
             </div>
 
             <section className="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <div className="max-w-3xl">
-                <h2 className="text-2xl font-semibold">How this seller net proceeds calculator works</h2>
-                <p className="mt-4 text-slate-600 leading-7">
-                  This seller net proceeds calculator estimates how much money you may walk away with after selling your home.
-                  It uses your estimated sale price, mortgage balance, real estate commission, seller concessions, and common
-                  seller-side closing costs to create a simple net proceeds estimate.
+                <h2 className="text-2xl font-semibold">
+                  How this seller net proceeds calculator works
+                </h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  This seller net proceeds calculator estimates how much money you may walk away
+                  with after selling your home. It uses your estimated sale price, mortgage balance,
+                  real estate commission, seller concessions, and common seller-side closing costs to
+                  create a simple net proceeds estimate.
                 </p>
-                <p className="mt-4 text-slate-600 leading-7">
-                  Because closing costs can vary by location, this calculator also uses your ZIP code to apply localized fee
-                  assumptions. You can edit those assumptions if you already know your attorney fees, title fees, transfer taxes,
-                  recording fees, or other local costs.
+                <p className="mt-4 leading-7 text-slate-600">
+                  Because closing costs can vary by location, this calculator also uses your ZIP code
+                  to apply localized fee assumptions. You can edit those assumptions if you already
+                  know your attorney fees, title fees, transfer taxes, recording fees, or other local
+                  costs.
                 </p>
               </div>
             </section>
@@ -489,9 +538,10 @@ export default function Calculator() {
             <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <div className="max-w-3xl">
                 <h2 className="text-2xl font-semibold">What costs are included?</h2>
-                <p className="mt-4 text-slate-600 leading-7">
-                  A seller net estimate usually includes the major costs that reduce your proceeds at closing. Your actual costs
-                  may vary based on your state, county, purchase agreement, lender payoff, and negotiated seller concessions.
+                <p className="mt-4 leading-7 text-slate-600">
+                  A seller net estimate usually includes the major costs that reduce your proceeds at
+                  closing. Your actual costs may vary based on your state, county, purchase
+                  agreement, lender payoff, and negotiated seller concessions.
                 </p>
 
                 <ul className="mt-5 list-disc space-y-2 pl-6 text-slate-600">
@@ -506,6 +556,12 @@ export default function Calculator() {
               </div>
             </section>
 
+            {/* PRE-FAQ AD - paused for initial AdSense review / UX.
+            <div className="mt-6">
+              <AdSlot slot="xxxxxx" minHeight="min-h-[250px]" />
+            </div>
+            */}
+
             <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <div className="max-w-3xl">
                 <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
@@ -513,64 +569,84 @@ export default function Calculator() {
                 <div className="mt-6 space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold">What are seller net proceeds?</h3>
-                    <p className="mt-2 text-slate-600 leading-7">
-                      Seller net proceeds are the estimated amount you keep after subtracting your mortgage payoff, commission,
-                      closing costs, concessions, and other seller expenses from the final sale price.
+                    <p className="mt-2 leading-7 text-slate-600">
+                      Seller net proceeds are the estimated amount you keep after subtracting your
+                      mortgage payoff, commission, closing costs, concessions, and other seller
+                      expenses from the final sale price.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold">How do I calculate my net proceeds from selling a house?</h3>
-                    <p className="mt-2 text-slate-600 leading-7">
-                      Start with your expected sale price, then subtract your loan payoff, agent commission, seller closing costs,
-                      and any credits or concessions you agree to pay. The remaining amount is your estimated net proceeds.
+                    <h3 className="text-lg font-semibold">
+                      How do I calculate my net proceeds from selling a house?
+                    </h3>
+                    <p className="mt-2 leading-7 text-slate-600">
+                      Start with your expected sale price, then subtract your loan payoff, agent
+                      commission, seller closing costs, and any credits or concessions you agree to
+                      pay. The remaining amount is your estimated net proceeds.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold">Are seller closing costs the same in every ZIP code?</h3>
-                    <p className="mt-2 text-slate-600 leading-7">
-                      No. Seller closing costs can vary by state, county, municipality, and transaction type. That is why this
-                      calculator uses ZIP-based defaults and lets you edit the individual fee values.
+                    <h3 className="text-lg font-semibold">
+                      Are seller closing costs the same in every ZIP code?
+                    </h3>
+                    <p className="mt-2 leading-7 text-slate-600">
+                      No. Seller closing costs can vary by state, county, municipality, and
+                      transaction type. That is why this calculator uses ZIP-based defaults and lets
+                      you edit the individual fee values.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-lg font-semibold">Why is agent commission included?</h3>
-                    <p className="mt-2 text-slate-600 leading-7">
-                      Commission is often one of the largest seller expenses. Including it gives you a more realistic estimate of
-                      what you may walk away with after the sale closes.
+                    <p className="mt-2 leading-7 text-slate-600">
+                      Commission is often one of the largest seller expenses. Including it gives you
+                      a more realistic estimate of what you may walk away with after the sale closes.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-lg font-semibold">Is this a final closing statement?</h3>
-                    <p className="mt-2 text-slate-600 leading-7">
-                      No. This calculator is an estimate for planning purposes. Your final numbers should come from your real
-                      estate agent, closing attorney, title company, lender, or settlement statement.
+                    <p className="mt-2 leading-7 text-slate-600">
+                      No. This calculator is an estimate for planning purposes. Your final numbers
+                      should come from your real estate agent, closing attorney, title company,
+                      lender, or settlement statement.
                     </p>
                   </div>
+
                   <div className="mt-6">
-                        <a
-                        href="/buyer-closing-cost-calculator"
-                        className="text-sm font-medium text-blue-600 underline hover:text-blue-800"
-                        >
-                        Buying instead? Estimate your buyer closing costs →
-                        </a>
-                    </div>
+                    <a
+                      href="/buyer-closing-cost-calculator"
+                      className="text-sm font-medium text-blue-600 underline hover:text-blue-800"
+                    >
+                      Buying instead? Estimate your buyer closing costs →
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
-
           </div>
 
+          {/* RIGHT SIDEBAR AD - paused for initial AdSense review / UX.
           <aside className="hidden xl:block">
-            <div className="sticky top-6 rounded-2xl border border-slate-200 bg-slate-100 p-4 text-center text-sm font-medium text-slate-500 min-h-[600px]">
-              Right sidebar ad
+            <div className="sticky top-6">
+              <AdSlot slot="xxxxxxxxx" minHeight="min-h-[600px]" />
             </div>
           </aside>
+          */}
+
+          <aside className="hidden xl:block" aria-hidden="true" />
         </div>
       </div>
+
+      {/* MOBILE STICKY AD - paused for initial AdSense review / UX.
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white p-2 shadow-[0_-4px_16px_rgba(15,23,42,0.08)] xl:hidden">
+        <AdSlot label="Mobile sticky ad" minHeight="min-h-[64px]" className="mx-auto max-w-md rounded-xl" />
+        <!---use this syntax below, check the format from the old one above is correct-->
+        <AdSlot slot="xxxxxx" minHeight="min-h-[64px]" />
+      </div>
+      */}
     </main>
   );
 }
