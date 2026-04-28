@@ -128,6 +128,7 @@ export default function Calculator() {
   const [mortgageBalanceInput, setMortgageBalanceInput] = useState('390,000');
   const [commissionInput, setCommissionInput] = useState('6%');
   const [sellerConcessionsInput, setSellerConcessionsInput] = useState('0');
+  const [isMobileNetOpen, setIsMobileNetOpen] = useState(false);
 
   const parseNumber = (value: string) => Number(value.replace(/[^\d.]/g, '')) || 0;
 
@@ -225,7 +226,7 @@ export default function Calculator() {
   });
 
   return (
-    <main className="min-h-screen bg-slate-50 pb-24 text-slate-900 xl:pb-0">
+    <main className="min-h-screen bg-slate-50 pb-36 text-slate-900 lg:pb-0">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
         {/* TOP AD */}
         <div className="mb-6">
@@ -363,7 +364,7 @@ export default function Calculator() {
               </section>
 
               <section className="space-y-6">
-                <div className="rounded-3xl bg-slate-900 p-6 text-white shadow-sm">
+                <div className="hidden rounded-3xl bg-slate-900 p-6 text-white shadow-sm lg:block">
                   <p className="text-sm font-medium text-slate-300">Estimated net proceeds</p>
                   <div className="mt-3 text-5xl font-semibold tracking-tight">
                     {currencyFormatter.format(estimatedNetProceeds)}
@@ -637,6 +638,61 @@ export default function Calculator() {
           */}
 
           <aside className="hidden xl:block" aria-hidden="true" />
+        </div>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-700 bg-slate-900 text-white shadow-[0_-12px_30px_rgba(15,23,42,0.25)] lg:hidden">
+        <div className="mx-auto max-w-xl px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3">
+          <div
+            className={`grid overflow-hidden transition-all duration-300 ease-out ${
+              isMobileNetOpen ? 'mb-3 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+            }`}
+          >
+            <div className="min-h-0 overflow-hidden">
+              <div className="space-y-3 rounded-2xl bg-white/10 p-4 text-sm">
+                <div className="flex justify-between gap-4">
+                  <span className="text-slate-300">Sale price</span>
+                  <span className="font-medium">{currencyFormatter.format(salePrice)}</span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-slate-300">Total selling costs</span>
+                  <span className="font-medium">{currencyFormatter.format(totalSellingCosts)}</span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-slate-300">Loan payoff</span>
+                  <span className="font-medium">{currencyFormatter.format(mortgageBalance)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wide text-slate-300">
+                Estimated net proceeds
+              </p>
+              <div className="mt-1 text-3xl font-semibold tracking-tight">
+                {currencyFormatter.format(estimatedNetProceeds)}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsMobileNetOpen((current) => !current)}
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
+              aria-label={isMobileNetOpen ? 'Hide net proceeds details' : 'Show net proceeds details'}
+              aria-expanded={isMobileNetOpen}
+            >
+              <span
+                className={`text-2xl leading-none transition-transform duration-300 ${
+                  isMobileNetOpen ? 'rotate-180' : ''
+                }`}
+                aria-hidden="true"
+              >
+                ↑
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 

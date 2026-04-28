@@ -129,6 +129,7 @@ export default function BuyerClosingCostCalculator() {
   const [prepaidExpensesInput, setPrepaidExpensesInput] = useState('4,600');
   const [recordingFeesInput, setRecordingFeesInput] = useState('250');
   const [inspectionAndAppraisalInput, setInspectionAndAppraisalInput] = useState('900');
+  const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
   const parseNumber = (value: string) => Number(value.replace(/[^\d.]/g, '')) || 0;
   const formatNumber = (value: string) => numberFormatter.format(parseNumber(value));
@@ -203,7 +204,7 @@ export default function BuyerClosingCostCalculator() {
   });
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
+    <main className="min-h-screen bg-slate-50 pb-28 text-slate-900 lg:pb-0">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
         <div className="mb-6">
           <AdSlot slot="9538459184" minHeight="min-h-[90px]" />
@@ -309,7 +310,7 @@ export default function BuyerClosingCostCalculator() {
               </section>
 
               <section className="space-y-6">
-                <div className="rounded-3xl bg-slate-900 p-6 text-white shadow-sm">
+                <div className="hidden rounded-3xl bg-slate-900 p-6 text-white shadow-sm lg:block">
                   <p className="text-sm font-medium text-slate-300">Estimated cash to close</p>
                   <div className="mt-3 text-5xl font-semibold tracking-tight">
                     {currencyFormatter.format(estimatedCashToClose)}
@@ -486,6 +487,62 @@ export default function BuyerClosingCostCalculator() {
 
           {/* Right sidebar intentionally hidden to preserve the desktop 3-column layout */}
           <aside className="hidden xl:block" aria-hidden="true" />
+        </div>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-slate-900 text-white shadow-[0_-10px_30px_rgba(15,23,42,0.25)] lg:hidden">
+        <div className="mx-auto max-w-xl px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-3">
+          <button
+            type="button"
+            className="flex w-full items-center justify-between gap-4 text-left"
+            onClick={() => setIsMobileSummaryOpen((current) => !current)}
+            aria-expanded={isMobileSummaryOpen}
+            aria-controls="mobile-cash-to-close-details"
+          >
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wide text-slate-300">
+                Estimated cash to close
+              </p>
+              <div className="mt-1 text-3xl font-semibold tracking-tight">
+                {currencyFormatter.format(estimatedCashToClose)}
+              </div>
+            </div>
+
+            <span
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-xl transition-transform ${
+                isMobileSummaryOpen ? 'rotate-180' : ''
+              }`}
+              aria-hidden="true"
+            >
+              ↑
+            </span>
+          </button>
+
+          <div
+            id="mobile-cash-to-close-details"
+            className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+              isMobileSummaryOpen ? 'mt-4 max-h-80 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="space-y-3 rounded-2xl bg-white/10 p-4">
+              <div className="flex justify-between gap-4 text-sm">
+                <span className="text-slate-300">Down payment</span>
+                <span className="font-medium">{currencyFormatter.format(downPayment)}</span>
+              </div>
+              <div className="flex justify-between gap-4 text-sm">
+                <span className="text-slate-300">Estimated closing costs</span>
+                <span className="font-medium">{currencyFormatter.format(estimatedClosingCosts)}</span>
+              </div>
+              <div className="flex justify-between gap-4 text-sm">
+                <span className="text-slate-300">Loan amount</span>
+                <span className="font-medium">{currencyFormatter.format(loanAmount)}</span>
+              </div>
+              <div className="flex justify-between gap-4 text-sm">
+                <span className="text-slate-300">Closing costs as % of price</span>
+                <span className="font-medium">{closingCostPercent.toFixed(2)}%</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
