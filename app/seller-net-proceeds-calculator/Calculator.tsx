@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+import {
+  calculateTransferTax,
+  getFeeRuleFromZip,
+  getLocationLabelFromZip,
+} from '@/lib/real-estate-fee-rules';
 
 function AdSlot({
   slot,
@@ -71,49 +77,6 @@ function MoneyInput({
   );
 }
 
-const ZIP_FEE_PRESETS = {
-  '30082': {
-    locationLabel: 'Smyrna, GA (Cobb County)',
-    titleOrAttorneyLabel: 'Attorney / title fees',
-    titleOrAttorney: 1800,
-    transferTax: 1000,
-    recordingFees: 250,
-    otherLocalFees: 300,
-  },
-  '30126': {
-    locationLabel: 'Mableton, GA (Cobb County)',
-    titleOrAttorneyLabel: 'Attorney / title fees',
-    titleOrAttorney: 1800,
-    transferTax: 1000,
-    recordingFees: 250,
-    otherLocalFees: 300,
-  },
-  '30339': {
-    locationLabel: 'Atlanta, GA (Cobb County)',
-    titleOrAttorneyLabel: 'Attorney / title fees',
-    titleOrAttorney: 1950,
-    transferTax: 1100,
-    recordingFees: 300,
-    otherLocalFees: 350,
-  },
-  '30327': {
-    locationLabel: 'Atlanta, GA (Fulton County)',
-    titleOrAttorneyLabel: 'Attorney / title fees',
-    titleOrAttorney: 2100,
-    transferTax: 1200,
-    recordingFees: 325,
-    otherLocalFees: 375,
-  },
-  default: {
-    locationLabel: 'Selected ZIP estimate',
-    titleOrAttorneyLabel: 'Title / attorney fees',
-    titleOrAttorney: 1900,
-    transferTax: 1050,
-    recordingFees: 275,
-    otherLocalFees: 325,
-  },
-};
-
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -121,6 +84,35 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 });
 
 const numberFormatter = new Intl.NumberFormat('en-US');
+
+type SellerFeeInputKey = 'titleOrAttorney' | 'transferTax' | 'recordingFees' | 'otherLocalFees';
+
+const sellerFeeInputKeys: SellerFeeInputKey[] = [
+  'titleOrAttorney',
+  'transferTax',
+  'recordingFees',
+  'otherLocalFees',
+];
+
+const getSellerFeeInputs = (zipCode: string, salePrice: number) => {
+  const feeRule = getFeeRuleFromZip(zipCode);
+
+  return {
+    titleOrAttorney: numberFormatter.format(feeRule.defaultSellerFees.titleOrAttorney),
+    transferTax: numberFormatter.format(calculateTransferTax(salePrice, feeRule.transferTax)),
+    recordingFees: numberFormatter.format(feeRule.defaultSellerFees.recordingFees),
+    otherLocalFees: numberFormatter.format(feeRule.defaultSellerFees.otherLocalFees),
+  };
+};
+
+const getUneditedSellerFeeInputs = () =>
+  sellerFeeInputKeys.reduce(
+    (editedInputs, key) => ({
+      ...editedInputs,
+      [key]: false,
+    }),
+    {} as Record<SellerFeeInputKey, boolean>,
+  );
 
 export default function Calculator() {
   const [zipCode, setZipCode] = useState('30082');
@@ -134,42 +126,38 @@ export default function Calculator() {
 
   const formatNumber = (value: string) => numberFormatter.format(parseNumber(value));
 
-  const feePreset = useMemo(() => {
-    if (zipCode in ZIP_FEE_PRESETS) {
-      return ZIP_FEE_PRESETS[zipCode as keyof typeof ZIP_FEE_PRESETS];
-    }
+  const salePrice = parseNumber(salePriceInput);
+  const feeRule = useMemo(() => getFeeRuleFromZip(zipCode), [zipCode]);
+  const locationLabel = useMemo(() => getLocationLabelFromZip(zipCode), [zipCode]);
+  const calculatedTransferTax = calculateTransferTax(salePrice, feeRule.transferTax);
 
-    if (zipCode.startsWith('30')) {
-      return {
-        ...ZIP_FEE_PRESETS.default,
-        locationLabel: `ZIP ${zipCode} (Georgia estimate)`,
-        titleOrAttorneyLabel: 'Attorney / title fees',
-      };
-    }
-
-    return {
-      ...ZIP_FEE_PRESETS.default,
-      locationLabel: zipCode ? `ZIP ${zipCode} estimate` : 'Selected ZIP estimate',
-    };
-  }, [zipCode]);
-
-  const [feeInputs, setFeeInputs] = useState({
-    titleOrAttorney: numberFormatter.format(ZIP_FEE_PRESETS['30082'].titleOrAttorney),
-    transferTax: numberFormatter.format(ZIP_FEE_PRESETS['30082'].transferTax),
-    recordingFees: numberFormatter.format(ZIP_FEE_PRESETS['30082'].recordingFees),
-    otherLocalFees: numberFormatter.format(ZIP_FEE_PRESETS['30082'].otherLocalFees),
-  });
+  const [feeInputs, setFeeInputs] = useState(() => getSellerFeeInputs('30082', salePrice));
+  const [editedFeeInputs, setEditedFeeInputs] = useState(() => getUneditedSellerFeeInputs());
+  const previousZipCode = useRef(zipCode);
 
   useEffect(() => {
-    setFeeInputs({
-      titleOrAttorney: numberFormatter.format(feePreset.titleOrAttorney),
-      transferTax: numberFormatter.format(feePreset.transferTax),
-      recordingFees: numberFormatter.format(feePreset.recordingFees),
-      otherLocalFees: numberFormatter.format(feePreset.otherLocalFees),
-    });
-  }, [feePreset]);
+    const zipChanged = previousZipCode.current !== zipCode;
 
-  const salePrice = parseNumber(salePriceInput);
+    if (zipChanged) {
+      setFeeInputs({
+        titleOrAttorney: numberFormatter.format(feeRule.defaultSellerFees.titleOrAttorney),
+        transferTax: numberFormatter.format(calculatedTransferTax),
+        recordingFees: numberFormatter.format(feeRule.defaultSellerFees.recordingFees),
+        otherLocalFees: numberFormatter.format(feeRule.defaultSellerFees.otherLocalFees),
+      });
+      setEditedFeeInputs(getUneditedSellerFeeInputs());
+      previousZipCode.current = zipCode;
+      return;
+    }
+
+    if (!editedFeeInputs.transferTax) {
+      setFeeInputs((current) => ({
+        ...current,
+        transferTax: numberFormatter.format(calculatedTransferTax),
+      }));
+    }
+  }, [calculatedTransferTax, editedFeeInputs.transferTax, feeRule, zipCode]);
+
   const mortgageBalance = parseNumber(mortgageBalanceInput);
   const commissionRate = parseNumber(commissionInput);
   const sellerConcessions = parseNumber(sellerConcessionsInput);
@@ -198,6 +186,10 @@ export default function Calculator() {
 
   const handleFeeChange =
     (key: keyof typeof feeInputs) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setEditedFeeInputs((current) => ({
+        ...current,
+        [key]: true,
+      }));
       setFeeInputs((current) => ({
         ...current,
         [key]: event.target.value.replace(/[^\d.,]/g, ''),
@@ -280,7 +272,7 @@ export default function Calculator() {
                       inputMode="numeric"
                     />
                     <p className="mt-2 text-sm text-slate-500">
-                      Using averages for {feePreset.locationLabel}
+                      Using state-level defaults for {locationLabel}
                     </p>
                   </div>
 
@@ -326,10 +318,13 @@ export default function Calculator() {
                     <p className="mt-1 text-sm text-slate-500">
                       Fee assumptions update based on the ZIP entered. You can edit these values.
                     </p>
+                    {feeRule.notes ? (
+                      <p className="mt-2 text-xs text-slate-500">Note: {feeRule.notes}</p>
+                    ) : null}
 
                     <div className="mt-4 grid gap-4 sm:grid-cols-2">
                       <MoneyInput
-                        label={feePreset.titleOrAttorneyLabel}
+                        label="Title / attorney fees"
                         value={feeInputs.titleOrAttorney}
                         onChange={handleFeeChange('titleOrAttorney')}
                         onBlur={handleFeeBlur('titleOrAttorney')}
@@ -432,7 +427,7 @@ export default function Calculator() {
                       onBlur={handleMoneyBlur(setMortgageBalanceInput)}
                     />
                     <MoneyInput
-                      label={feePreset.titleOrAttorneyLabel}
+                      label="Title / attorney fees"
                       value={feeInputs.titleOrAttorney}
                       onChange={handleFeeChange('titleOrAttorney')}
                       onBlur={handleFeeBlur('titleOrAttorney')}

@@ -2,6 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
+import {
+  getFeeRuleFromZip,
+  getLocationLabelFromZip,
+} from '@/lib/real-estate-fee-rules';
+
 function AdSlot({
   slot,
   className = '',
@@ -77,49 +82,6 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 
 const numberFormatter = new Intl.NumberFormat('en-US');
 
-const ZIP_FEE_PRESETS = {
-  '30082': {
-    locationLabel: 'Smyrna, GA (Cobb County)',
-    lenderFees: 2400,
-    titleFees: 3200,
-    prepaidExpenses: 4600,
-    recordingFees: 250,
-    inspectionAndAppraisal: 900,
-  },
-  '30126': {
-    locationLabel: 'Mableton, GA (Cobb County)',
-    lenderFees: 2400,
-    titleFees: 3200,
-    prepaidExpenses: 4600,
-    recordingFees: 250,
-    inspectionAndAppraisal: 900,
-  },
-  '30339': {
-    locationLabel: 'Atlanta, GA (Cobb County)',
-    lenderFees: 2600,
-    titleFees: 3500,
-    prepaidExpenses: 4900,
-    recordingFees: 300,
-    inspectionAndAppraisal: 950,
-  },
-  '30327': {
-    locationLabel: 'Atlanta, GA (Fulton County)',
-    lenderFees: 2750,
-    titleFees: 3700,
-    prepaidExpenses: 5200,
-    recordingFees: 325,
-    inspectionAndAppraisal: 1000,
-  },
-  default: {
-    locationLabel: 'Selected ZIP estimate',
-    lenderFees: 2500,
-    titleFees: 3400,
-    prepaidExpenses: 4800,
-    recordingFees: 275,
-    inspectionAndAppraisal: 950,
-  },
-};
-
 export default function BuyerClosingCostCalculator() {
   const [zipCode, setZipCode] = useState('30082');
   const [homePriceInput, setHomePriceInput] = useState('500,000');
@@ -134,31 +96,18 @@ export default function BuyerClosingCostCalculator() {
   const parseNumber = (value: string) => Number(value.replace(/[^\d.]/g, '')) || 0;
   const formatNumber = (value: string) => numberFormatter.format(parseNumber(value));
 
-  const feePreset = useMemo(() => {
-    if (zipCode in ZIP_FEE_PRESETS) {
-      return ZIP_FEE_PRESETS[zipCode as keyof typeof ZIP_FEE_PRESETS];
-    }
-
-    if (zipCode.startsWith('30')) {
-      return {
-        ...ZIP_FEE_PRESETS.default,
-        locationLabel: `ZIP ${zipCode} (Georgia estimate)`,
-      };
-    }
-
-    return {
-      ...ZIP_FEE_PRESETS.default,
-      locationLabel: zipCode ? `ZIP ${zipCode} estimate` : 'Selected ZIP estimate',
-    };
-  }, [zipCode]);
+  const feeRule = useMemo(() => getFeeRuleFromZip(zipCode), [zipCode]);
+  const locationLabel = useMemo(() => getLocationLabelFromZip(zipCode), [zipCode]);
 
   useEffect(() => {
-    setLenderFeesInput(numberFormatter.format(feePreset.lenderFees));
-    setTitleFeesInput(numberFormatter.format(feePreset.titleFees));
-    setPrepaidExpensesInput(numberFormatter.format(feePreset.prepaidExpenses));
-    setRecordingFeesInput(numberFormatter.format(feePreset.recordingFees));
-    setInspectionAndAppraisalInput(numberFormatter.format(feePreset.inspectionAndAppraisal));
-  }, [feePreset]);
+    setLenderFeesInput(numberFormatter.format(feeRule.defaultBuyerFees.lenderFees));
+    setTitleFeesInput(numberFormatter.format(feeRule.defaultBuyerFees.titleFees));
+    setPrepaidExpensesInput(numberFormatter.format(feeRule.defaultBuyerFees.prepaidExpenses));
+    setRecordingFeesInput(numberFormatter.format(feeRule.defaultBuyerFees.recordingFees));
+    setInspectionAndAppraisalInput(
+      numberFormatter.format(feeRule.defaultBuyerFees.inspectionAndAppraisal),
+    );
+  }, [feeRule]);
 
 
   const homePrice = parseNumber(homePriceInput);
@@ -245,7 +194,7 @@ export default function BuyerClosingCostCalculator() {
                       inputMode="numeric"
                     />
                     <p className="mt-2 text-sm text-slate-500">
-                      Using averages for {feePreset.locationLabel}
+                      Using state-level defaults for {locationLabel}
                     </p>
                   </div>
 
@@ -270,6 +219,9 @@ export default function BuyerClosingCostCalculator() {
                       These defaults update based on ZIP code. Edit them if you already have lender
                       or title estimates.
                     </p>
+                    {feeRule.notes ? (
+                      <p className="mt-2 text-xs text-slate-500">Note: {feeRule.notes}</p>
+                    ) : null}
 
                     <div className="mt-4 grid gap-4 sm:grid-cols-2">
                       <MoneyInput
