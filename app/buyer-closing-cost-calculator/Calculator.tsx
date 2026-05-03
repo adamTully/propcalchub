@@ -155,10 +155,6 @@ export default function BuyerClosingCostCalculator() {
   return (
     <main className="min-h-screen bg-slate-50 pb-28 text-slate-900 lg:pb-0">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
-        <div className="mb-6">
-          <AdSlot slot="9538459184" minHeight="min-h-[90px]" />
-        </div>
-
         <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
           {/* Left sidebar intentionally hidden to preserve the desktop 3-column layout */}
           <aside className="hidden xl:block" aria-hidden="true" />
@@ -176,6 +172,10 @@ export default function BuyerClosingCostCalculator() {
                 lender fees, title fees, prepaid expenses, and other buyer-side closing costs.
               </p>
             </section>
+
+            <div className="mb-8">
+              <AdSlot slot="9538459184" minHeight="min-h-[90px]" />
+            </div>
 
             <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
               <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
@@ -364,9 +364,128 @@ export default function BuyerClosingCostCalculator() {
               </section>
             </div>
 
+            <section className="mt-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">
+                  How this buyer closing cost calculator works
+                </h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  This buyer closing cost calculator estimates the cash a buyer may need to purchase
+                  a home. It combines the down payment with estimated buyer closing costs such as
+                  lender fees, title fees, prepaid expenses, recording fees, inspection costs, and
+                  appraisal costs.
+                </p>
+                <p className="mt-4 leading-7 text-slate-600">
+                  The calculator uses your ZIP code to apply state-level defaults where possible.
+                  These defaults are only planning estimates. If you have a loan estimate from your
+                  lender or a quote from your title company or closing attorney, replace the default
+                  values with your actual numbers.
+                </p>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">
+                  Step-by-step: how to estimate cash to close
+                </h2>
+                <ol className="mt-5 list-decimal space-y-2 pl-6 leading-7 text-slate-600">
+                  <li>Enter the expected home purchase price.</li>
+                  <li>Enter your planned down payment.</li>
+                  <li>Review the estimated buyer closing costs.</li>
+                  <li>
+                    Adjust lender fees, title fees, prepaid expenses, recording fees, inspection
+                    costs, or appraisal costs if you know the exact values.
+                  </li>
+                  <li>
+                    Review the estimated cash to close and compare low, current, and high scenarios.
+                  </li>
+                </ol>
+                <p className="mt-4 leading-7 text-slate-600">
+                  Cash to close usually includes more than just the down payment. Buyers often need
+                  additional funds for lender fees, title services, escrow deposits, prepaid taxes,
+                  prepaid insurance, and other transaction costs.
+                </p>
+              </div>
+            </section>
+
             <div className="mt-6">
               <AdSlot slot="1189421214" minHeight="min-h-[250px]" />
             </div>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">What affects buyer closing costs?</h2>
+                <div className="mt-4 space-y-4 leading-7 text-slate-600">
+                  <p>
+                    Buyer closing costs can vary based on loan type, lender, interest rate, state,
+                    county, title company, property taxes, homeowners insurance, and the timing of
+                    closing. A buyer using a mortgage will usually have different closing costs than
+                    a cash buyer.
+                  </p>
+                  <p>
+                    Prepaid expenses can also vary significantly. For example, buyers may need to
+                    prepay homeowners insurance, property taxes, mortgage interest, or escrow
+                    reserves. These amounts depend on the closing date, local tax schedule, and
+                    lender requirements.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">Example buyer scenario</h2>
+                <div className="mt-4 space-y-4 leading-7 text-slate-600">
+                  <p>
+                    Example: A buyer purchasing a $500,000 home with a $100,000 down payment may
+                    still need several thousand dollars in additional closing costs. Lender fees,
+                    title fees, prepaid insurance, escrow deposits, appraisal fees, and inspection
+                    costs can all add to the total cash needed at closing.
+                  </p>
+                  <p>
+                    This calculator helps buyers understand that the down payment is only one part
+                    of the total amount needed to complete a home purchase.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">Buyer costs commonly included</h2>
+                <ul className="mt-5 list-disc space-y-2 pl-6 leading-7 text-slate-600">
+                  <li>Down payment</li>
+                  <li>Loan origination or lender fees</li>
+                  <li>Credit report and underwriting fees</li>
+                  <li>Title search and title insurance</li>
+                  <li>Settlement or escrow fees</li>
+                  <li>Recording fees</li>
+                  <li>Appraisal fee</li>
+                  <li>Home inspection fee</li>
+                  <li>Prepaid homeowners insurance</li>
+                  <li>Prepaid property taxes</li>
+                  <li>Prepaid mortgage interest</li>
+                  <li>Escrow reserves, if required</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">How accurate is this calculator?</h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  This calculator is designed to provide a planning estimate, not a final loan
+                  estimate. Your actual cash to close may change based on lender fees, loan program,
+                  interest rate, closing date, escrow requirements, property taxes, insurance
+                  premiums, title charges, and negotiated seller credits.
+                </p>
+                <p className="mt-4 leading-7 text-slate-600">
+                  For the most accurate number, compare this estimate with your official Loan
+                  Estimate and Closing Disclosure from your lender.
+                </p>
+              </div>
+            </section>
 
             <section className="mt-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <h2 className="text-2xl font-semibold">
@@ -390,8 +509,18 @@ export default function BuyerClosingCostCalculator() {
               <h2 className="mt-10 text-2xl font-semibold">Frequently asked questions</h2>
               <div className="mt-6 space-y-6">
                 <div>
+                  <h3 className="font-medium">What are buyer closing costs?</h3>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    Buyer closing costs are the fees and prepaid expenses a buyer typically pays
+                    when purchasing a home. They may include lender fees, title fees, recording fees,
+                    appraisal fees, inspection fees, prepaid taxes, prepaid insurance, and escrow
+                    reserves.
+                  </p>
+                </div>
+
+                <div>
                   <h3 className="font-medium">How much are buyer closing costs?</h3>
-                  <p className="mt-2 text-slate-600">
+                  <p className="mt-2 leading-7 text-slate-600">
                     Buyer closing costs often range from about 2% to 5% of the purchase price,
                     excluding the down payment. Actual costs vary based on loan type, location, lender,
                     and transaction details.
@@ -400,17 +529,45 @@ export default function BuyerClosingCostCalculator() {
 
                 <div>
                   <h3 className="font-medium">Is the down payment included in closing costs?</h3>
-                  <p className="mt-2 text-slate-600">
-                    The down payment is separate from closing costs, but both are usually part of the
-                    total cash needed to close on a home purchase.
+                  <p className="mt-2 leading-7 text-slate-600">
+                    The down payment is separate from closing costs, but both are part of the total
+                    cash needed to close. That is why this calculator shows estimated cash to close
+                    instead of only closing costs.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-medium">Can buyers reduce closing costs?</h3>
-                  <p className="mt-2 text-slate-600">
+                  <p className="mt-2 leading-7 text-slate-600">
                     Buyers may reduce costs by comparing lenders, negotiating seller concessions, and
                     reviewing loan estimates carefully before closing.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-medium">Can seller credits reduce cash to close?</h3>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    Yes. If the seller agrees to pay some buyer closing costs, those credits can
+                    reduce the amount of cash the buyer needs at closing. Seller credits are usually
+                    negotiated in the purchase agreement.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-medium">Why do prepaid expenses matter?</h3>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    Prepaid expenses can be a major part of cash to close. Buyers may need to prepay
+                    homeowners insurance, property taxes, mortgage interest, or escrow reserves
+                    depending on lender requirements and closing date.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-medium">Is this calculator the same as a Loan Estimate?</h3>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    No. This calculator is for planning only. Your official Loan Estimate and
+                    Closing Disclosure from your lender provide the numbers used for your actual
+                    transaction.
                   </p>
                 </div>
               </div>

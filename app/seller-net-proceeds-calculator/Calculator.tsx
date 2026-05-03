@@ -220,14 +220,6 @@ export default function Calculator() {
   return (
     <main className="min-h-screen bg-slate-50 pb-36 text-slate-900 lg:pb-0">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
-        {/* TOP AD */}
-        <div className="mb-6">
-          <AdSlot
-            slot="4273170546"
-            minHeight="min-h-[90px]"
-            />
-        </div>
-
         <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
           {/* LEFT SIDEBAR AD - paused for initial AdSense review / UX.
           <aside className="hidden xl:block">
@@ -253,6 +245,14 @@ export default function Calculator() {
                 code, mortgage balance, commission, and seller-side closing costs.
               </p>
             </section>
+
+            {/* TOP AD */}
+            <div className="mb-8">
+              <AdSlot
+                slot="4273170546"
+                minHeight="min-h-[90px]"
+                />
+            </div>
 
             {/* CALCULATOR + RESULTS */}
             <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
@@ -461,6 +461,123 @@ export default function Calculator() {
               </section>
             </div>
 
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">What affects your net proceeds?</h2>
+                <div className="mt-4 space-y-4 leading-7 text-slate-600">
+                  <p>
+                    Several factors can change how much you walk away with after selling your home.
+                    The largest factors are usually your mortgage payoff and real estate commission,
+                    but local closing costs, transfer taxes, negotiated repairs, and seller
+                    concessions can also reduce your final amount.
+                  </p>
+                  <p>
+                    In some transactions, the seller agrees to pay part of the buyer's closing costs
+                    or provide repair credits. These concessions can be useful during negotiation,
+                    but they directly reduce seller proceeds. Local taxes and settlement fees may
+                    also vary by state, county, and contract.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">Example seller scenario</h2>
+                <div className="mt-4 space-y-4 leading-7 text-slate-600">
+                  <p>
+                    Example: A homeowner expects to sell for $500,000 and has a remaining mortgage
+                    payoff of $390,000. If the agent commission is 6%, the commission alone would be
+                    about $30,000. After adding transfer taxes, attorney or title fees, recording
+                    fees, and other seller costs, the amount the seller keeps may be much lower than
+                    the sale price.
+                  </p>
+                  <p>
+                    This is why sellers should estimate net proceeds before deciding on a listing
+                    price, accepting an offer, or planning the purchase of another home.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">Seller costs commonly included</h2>
+                <ul className="mt-5 list-disc space-y-2 pl-6 leading-7 text-slate-600">
+                  <li>Real estate agent commission</li>
+                  <li>Mortgage payoff or remaining loan balance</li>
+                  <li>State or local transfer taxes</li>
+                  <li>Attorney, title, or settlement fees</li>
+                  <li>Recording fees</li>
+                  <li>Seller concessions or repair credits</li>
+                  <li>HOA transfer or document fees, if applicable</li>
+                  <li>Other local closing costs</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">How accurate is this calculator?</h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  This calculator is designed for planning, not final closing. It uses state-level
+                  defaults and editable assumptions to help you estimate a likely range. Actual
+                  closing costs can vary based on your location, title company, closing attorney,
+                  lender payoff, contract terms, and negotiated concessions.
+                </p>
+                <p className="mt-4 leading-7 text-slate-600">
+                  For the most accurate number, compare this estimate with a seller net sheet from
+                  your real estate agent or closing attorney.
+                </p>
+              </div>
+            </section>
+
+            <section className="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">
+                  How this seller net proceeds calculator works
+                </h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  This seller net proceeds calculator estimates how much money you may keep after
+                  selling a home. It starts with your expected sale price, then subtracts your
+                  remaining mortgage balance, estimated real estate commission, transfer taxes, title
+                  or attorney fees, recording fees, seller concessions, and other local closing
+                  costs.
+                </p>
+                <p className="mt-4 leading-7 text-slate-600">
+                  The calculator uses your ZIP code to apply a state-level estimate for certain
+                  fees. These defaults are only a starting point. If you already know your commission
+                  rate, mortgage payoff, attorney fees, title fees, or concessions, you can edit the
+                  fields directly to create a more personalized estimate.
+                </p>
+              </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">
+                  Step-by-step: how to estimate seller net proceeds
+                </h2>
+                <ol className="mt-5 list-decimal space-y-2 pl-6 leading-7 text-slate-600">
+                  <li>Enter your expected sale price.</li>
+                  <li>Enter your remaining mortgage balance or loan payoff.</li>
+                  <li>Review the estimated commission and seller closing costs.</li>
+                  <li>
+                    Adjust transfer taxes, title or attorney fees, recording fees, and concessions
+                    if you know the exact numbers.
+                  </li>
+                  <li>
+                    Review the estimated net proceeds and compare different sale price scenarios.
+                  </li>
+                </ol>
+                <p className="mt-4 leading-7 text-slate-600">
+                  Your estimated net proceeds are not the same as your sale price. The sale price is
+                  the gross amount paid by the buyer, while net proceeds are what may remain after
+                  selling expenses and loan payoff are deducted.
+                </p>
+              </div>
+            </section>
+
             {/* MID-CONTENT AD */}
             <div className="mt-6">
               <AdSlot
@@ -574,6 +691,18 @@ export default function Calculator() {
 
                   <div>
                     <h3 className="text-lg font-semibold">
+                      Are net proceeds the same as home equity?
+                    </h3>
+                    <p className="mt-2 leading-7 text-slate-600">
+                      Not exactly. Home equity is the difference between your home's value and what
+                      you owe on the mortgage. Net proceeds account for selling costs, commissions,
+                      transfer taxes, concessions, and other expenses that reduce the amount you
+                      actually keep.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">
                       How do I calculate my net proceeds from selling a house?
                     </h3>
                     <p className="mt-2 leading-7 text-slate-600">
@@ -591,6 +720,34 @@ export default function Calculator() {
                       No. Seller closing costs can vary by state, county, municipality, and
                       transaction type. That is why this calculator uses ZIP-based defaults and lets
                       you edit the individual fee values.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">Who usually pays transfer taxes?</h3>
+                    <p className="mt-2 leading-7 text-slate-600">
+                      Transfer tax responsibility depends on the state, local custom, and the
+                      purchase agreement. In many areas the seller pays, but in some places it may be
+                      split, paid by the buyer, or negotiated.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">
+                      Can seller concessions reduce my proceeds?
+                    </h3>
+                    <p className="mt-2 leading-7 text-slate-600">
+                      Yes. Seller concessions, repair credits, or closing cost credits paid to the
+                      buyer reduce the seller's final net proceeds.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold">Why does ZIP code matter?</h3>
+                    <p className="mt-2 leading-7 text-slate-600">
+                      ZIP code helps estimate the state or local cost assumptions used by the
+                      calculator. Closing costs can vary by location, so state-level defaults are
+                      more useful than a single national estimate.
                     </p>
                   </div>
 
