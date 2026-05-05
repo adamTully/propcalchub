@@ -1,6 +1,9 @@
 export const metadata = {
   title: 'Privacy Policy | PropCalcHub',
   description: 'Read the PropCalcHub privacy policy.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
 };
 
 export default function PrivacyPolicyPage() {

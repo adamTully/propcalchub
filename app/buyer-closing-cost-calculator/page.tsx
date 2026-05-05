@@ -4,6 +4,9 @@ export const metadata = {
   title: 'Buyer Closing Cost Calculator | PropCalcHub',
   description:
     'Estimate buyer closing costs, cash to close, down payment, lender fees, title fees, prepaid expenses, and more.',
+  alternates: {
+    canonical: '/buyer-closing-cost-calculator',
+  },
 };
 
 export default function Page() {

@@ -1,5 +1,8 @@
 export const metadata = {
   title: 'Contact | PropCalcHub',
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export default function Contact() {
