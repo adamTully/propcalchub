@@ -439,7 +439,9 @@ export default function BuyerClosingCostCalculator() {
                 <div className="mt-4 space-y-4 leading-7 text-slate-600">
                   <p>
                     Example: A buyer purchasing a $500,000 home with a $100,000 down payment may
-                    still need several thousand dollars in additional closing costs. Lender fees,
+                    still need approximately $10,000 to $12,000 in additional closing costs. In
+                    plain English, the buyer would add the $100,000 down payment to estimated buyer
+                    costs for a total cash to close of roughly $110,000 to $112,000. Lender fees,
                     title fees, prepaid insurance, escrow deposits, appraisal fees, and inspection
                     costs can all add to the total cash needed at closing.
                   </p>
@@ -591,6 +593,21 @@ export default function BuyerClosingCostCalculator() {
                   <span>→</span>
                 </a>
               </div>
+            </section>
+
+            <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <h3 className="text-xl font-semibold">Estimate the monthly payment</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                After you estimate cash to close, use the mortgage calculator to compare the
+                monthly payment for the same purchase price, down payment, taxes, insurance, and HOA
+                dues.
+              </p>
+              <a
+                href="/mortgage-calculator"
+                className="mt-4 inline-flex rounded-2xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Mortgage Calculator -&gt;
+              </a>
             </section>
           </div>
 

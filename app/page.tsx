@@ -34,13 +34,37 @@ function AdSlot({
   );
 }
 
+const calculators = [
+  {
+    label: 'Sell',
+    title: 'Seller Net Proceeds Calculator',
+    href: '/seller-net-proceeds-calculator',
+    description:
+      'Estimate how much you may keep after mortgage payoff, commission, transfer taxes, title or attorney fees, concessions, and other seller costs.',
+  },
+  {
+    label: 'Buy',
+    title: 'Buyer Closing Cost Calculator',
+    href: '/buyer-closing-cost-calculator',
+    description:
+      'Estimate cash to close by combining your down payment with lender fees, title charges, prepaid expenses, recording fees, inspection costs, and appraisal costs.',
+  },
+  {
+    label: 'Pay',
+    title: 'Mortgage Calculator',
+    href: '/mortgage-calculator',
+    description:
+      'Estimate a monthly payment with principal, interest, property taxes, homeowners insurance, and HOA dues in one simple planning view.',
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <section className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Real Estate Calculators
+            Real Estate Calculator Hub
           </p>
 
           <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -48,8 +72,8 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            Simple, accurate real estate calculators to help buyers, sellers, and homeowners make
-            better financial decisions.
+            Simple real estate calculators for buyers, sellers, and homeowners who want to
+            understand the numbers behind a property decision before they rely on a final quote.
           </p>
         </section>
 
@@ -58,91 +82,64 @@ export default function Home() {
         </div>
 
         <section className="mt-12">
-          <h2 className="text-2xl font-semibold">Calculator library</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-            Choose a calculator based on the decision you are working through. Each tool is designed
-            to be useful on its own, with editable assumptions and plain-language context.
-          </p>
-
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
-            <a
-              href="/seller-net-proceeds-calculator"
-              className="group rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-sm font-semibold">
-                Sell
-              </div>
-
-              <h3 className="text-xl font-semibold">Seller Net Proceeds Calculator</h3>
-
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Estimate how much you may walk away with after selling your home, including
-                mortgage payoff, commissions, closing costs, and other seller expenses.
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold">Available calculators</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                Choose the tool that matches your current question. Each calculator includes
+                editable fields, explanatory content, and limitations so the estimate is useful even
+                before you speak with a lender, agent, attorney, or title company.
               </p>
-
-              <div className="mt-6 flex items-center text-sm font-semibold text-slate-900">
-                <span>Open calculator</span>
-                <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
-              </div>
+            </div>
+            <a href="/about" className="text-sm font-medium text-blue-600 underline">
+              About PropCalcHub
             </a>
+          </div>
 
-            <a
-              href="/buyer-closing-cost-calculator"
-              className="group rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-sm font-semibold">
-                Buy
-              </div>
+          <div className="mt-6 grid gap-6 lg:grid-cols-3">
+            {calculators.map((calculator) => (
+              <a
+                key={calculator.href}
+                href={calculator.href}
+                className="group rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-sm font-semibold">
+                  {calculator.label}
+                </div>
 
-              <h3 className="text-xl font-semibold">Buyer Closing Cost Calculator</h3>
+                <h3 className="text-xl font-semibold">{calculator.title}</h3>
 
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Estimate your cash to close, including down payment, lender fees, title fees,
-                prepaid expenses, escrow reserves, and other buyer costs.
-              </p>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{calculator.description}</p>
 
-              <div className="mt-6 flex items-center text-sm font-semibold text-slate-900">
-                <span>Open calculator</span>
-                <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
-              </div>
-            </a>
+                <div className="mt-6 flex items-center text-sm font-semibold text-slate-900">
+                  <span>Open calculator</span>
+                  <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
 
         <section className="mx-auto mt-14 max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold">
-            Free real estate calculators for smarter decisions
-          </h2>
-
-          <div className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
-            <p>
-              PropCalcHub helps simplify the numbers behind buying, selling, and owning real
-              estate. Whether you are preparing to sell a home, estimating buyer closing costs, or
-              planning your next move, our calculators are built to give you fast, practical
-              estimates.
-            </p>
-
-            <p>
-              Start with one of the calculators above, enter a few basic details, and get a clearer
-              picture of your potential costs, proceeds, or cash needed at closing.
-            </p>
-          </div>
-        </section>
-
-        <section className="mx-auto mt-6 max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-semibold">What is PropCalcHub?</h2>
+
           <div className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
             <p>
-              PropCalcHub is a collection of simple real estate calculators designed to help buyers,
-              sellers, and homeowners understand the numbers behind common real estate decisions. The
-              goal is to make estimates easier to understand before you talk with a lender, real
-              estate agent, closing attorney, or title company.
+              PropCalcHub is an independent collection of real estate calculators built to make
+              common property decisions easier to understand. Buying, selling, and financing a home
+              often involves several numbers that can be hard to compare: sale price, down payment,
+              loan amount, commission, title fees, prepaid expenses, taxes, insurance, concessions,
+              and monthly payment estimates. PropCalcHub puts those pieces into simple calculators
+              so you can form a practical starting estimate.
             </p>
+
             <p>
-              Each calculator focuses on a specific decision, such as estimating seller net
-              proceeds, buyer closing costs, cash to close, or future mortgage-related costs. The
-              results are intended for planning purposes and should be used as a starting point, not
-              as a final settlement statement or loan estimate.
+              The goal is not to replace professional guidance. Instead, the site helps you prepare
+              better questions before you talk with a lender, real estate agent, closing attorney,
+              title company, or other professional involved in your transaction. A seller may want
+              to know whether a listing price leaves enough room after payoff and selling costs. A
+              buyer may want to understand cash to close beyond the down payment. A homeowner may
+              want to compare possible mortgage payments before shopping for the next home.
             </p>
           </div>
         </section>
@@ -151,16 +148,20 @@ export default function Home() {
           <h2 className="text-2xl font-semibold">How to use these calculators</h2>
           <div className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
             <p>
-              Start by choosing the calculator that matches your situation. Sellers can estimate how
-              much they may walk away with after paying off their mortgage and selling costs. Buyers
-              can estimate how much cash they may need for a down payment, closing costs, prepaid
-              expenses, and other purchase-related fees.
+              Start with the calculator that matches the decision in front of you. If you are
+              selling, use the seller net proceeds calculator to subtract mortgage payoff,
+              commission, transfer taxes, and seller costs from a possible sale price. If you are
+              buying, use the buyer closing cost calculator to estimate down payment plus closing
+              costs and prepaid expenses. If you are comparing payment scenarios, use the mortgage
+              calculator to estimate principal, interest, taxes, insurance, and HOA dues.
             </p>
             <p>
-              Most calculators include editable fields so you can replace the default assumptions
-              with numbers from your lender, agent, attorney, or title company. If you know your
-              exact loan estimate, payoff amount, commission rate, or closing attorney fees, enter
-              those values for a more useful estimate.
+              Default assumptions are only a starting point. Replace them with your own numbers
+              whenever you have them. A loan estimate, seller net sheet, payoff statement, title
+              quote, insurance quote, property tax estimate, or written repair credit can all make
+              the calculator output more useful. Small changes can matter, especially when a
+              transaction includes seller concessions, escrow deposits, local transfer taxes, HOA
+              fees, or a different closing date.
             </p>
           </div>
         </section>
@@ -170,33 +171,53 @@ export default function Home() {
         </div>
 
         <section className="mx-auto mt-6 max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold">Why estimates vary by location</h2>
-          <p className="mt-4 text-sm leading-7 text-slate-600">
-            Real estate costs can vary by state, county, city, property type, and contract terms.
-            Transfer taxes, title fees, attorney fees, recording fees, prepaid taxes, insurance, and
-            seller concessions are not the same everywhere. PropCalcHub uses state-level defaults
-            where possible, but users should always confirm final numbers with the professionals
-            involved in their transaction.
-          </p>
+          <h2 className="text-2xl font-semibold">
+            Why closing costs and payment estimates vary
+          </h2>
+          <div className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
+            <p>
+              Real estate estimates vary because costs are shaped by location, loan type, contract
+              terms, local custom, timing, and provider fees. Transfer taxes may be set at the state
+              level in one place and affected by county or city rules in another. Title fees,
+              attorney fees, recording fees, escrow requirements, prepaid taxes, and insurance
+              premiums can also change from one transaction to the next.
+            </p>
+            <p>
+              Mortgage payment estimates can vary for similar reasons. The loan amount, interest
+              rate, loan term, property tax bill, homeowners insurance premium, HOA dues, and escrow
+              requirements all affect the monthly number. A useful estimate should show the
+              components clearly so you can see what changed, not just a single final total.
+            </p>
+          </div>
         </section>
 
         <section className="mx-auto mt-6 max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-semibold">Important disclaimer</h2>
           <p className="mt-4 text-sm leading-7 text-slate-600">
             The calculators on PropCalcHub are for general planning and educational purposes only.
-            They are not financial, legal, tax, mortgage, or real estate advice. Actual costs may
-            vary based on your lender, closing provider, negotiated contract, local rules, and
-            timing. Always confirm your final numbers with a qualified professional before making
-            financial decisions.
+            They are not financial, legal, tax, mortgage, lending, or real estate advice. Actual
+            costs may vary based on your lender, closing provider, negotiated contract, local rules,
+            property details, and timing. Always confirm final numbers with a qualified professional
+            before making financial decisions.
           </p>
         </section>
 
-        <section className="mt-12 text-center">
-          <h2 className="text-2xl font-semibold">More calculators coming soon</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-            We are building additional tools for mortgage payments, affordability, refinance
-            decisions, rent vs. buy comparisons, and more.
-          </p>
+        <section className="mt-12 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h2 className="text-2xl font-semibold">Helpful site links</h2>
+          <div className="mt-4 flex flex-wrap gap-3 text-sm font-medium">
+            <a href="/about" className="rounded-full bg-slate-100 px-4 py-2 hover:bg-slate-200">
+              About
+            </a>
+            <a href="/contact" className="rounded-full bg-slate-100 px-4 py-2 hover:bg-slate-200">
+              Contact
+            </a>
+            <a
+              href="/privacy-policy"
+              className="rounded-full bg-slate-100 px-4 py-2 hover:bg-slate-200"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </section>
       </div>
     </main>

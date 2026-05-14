@@ -1,16 +1,18 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
+import SiteFooter from '@/components/SiteFooter';
+import SiteHeader from '@/components/SiteHeader';
+import './globals.css';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
@@ -33,57 +35,38 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-  <head>
-  <meta name="google-adsense-account" content="ca-pub-2489602416184279" />
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-2489602416184279" />
 
-  {/* AdSense */}
-  <Script
-    async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2489602416184279"
-    crossOrigin="anonymous"
-    strategy="afterInteractive"
-  />
+        {/* AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2489602416184279"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
 
-  {/* Google Analytics */}
-  <Script
-    src={`https://www.googletagmanager.com/gtag/js?id=G-PV4118YBZW`}
-    strategy="afterInteractive"
-  />
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-PV4118YBZW"
+          strategy="afterInteractive"
+        />
 
-  <Script id="google-analytics" strategy="afterInteractive">
-    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-PV4118YBZW');
-    `}
-  </Script>
-</head>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PV4118YBZW');
+          `}
+        </Script>
+      </head>
 
-  <body className="min-h-full flex flex-col">
-  <main className="flex-1">
-    {children}
-  </main>
-
-  <footer className="border-t border-slate-200 bg-white">
-    <div className="mx-auto max-w-6xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-600">
-      
-      <div>
-        © {new Date().getFullYear()} PropCalcHub
-      </div>
-
-      <div className="mt-3 sm:mt-0 flex gap-6">
-        <a href="/privacy-policy" className="hover:text-slate-900">
-          Privacy Policy
-        </a>
-        <a href="/contact" className="hover:text-slate-900">
-          Contact
-        </a>
-      </div>
-
-    </div>
-  </footer>
-</body>
-</html>
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col`}>
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+      </body>
+    </html>
   );
 }

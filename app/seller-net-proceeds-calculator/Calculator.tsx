@@ -488,9 +488,10 @@ export default function Calculator() {
                   <p>
                     Example: A homeowner expects to sell for $500,000 and has a remaining mortgage
                     payoff of $390,000. If the agent commission is 6%, the commission alone would be
-                    about $30,000. After adding transfer taxes, attorney or title fees, recording
-                    fees, and other seller costs, the amount the seller keeps may be much lower than
-                    the sale price.
+                    about $30,000. If estimated seller closing costs are approximately $6,000, the
+                    rough math is $500,000 minus $390,000, minus $30,000, minus $6,000. That leaves
+                    estimated net proceeds of approximately $74,000 before any additional credits,
+                    repairs, prorations, or payoff changes.
                   </p>
                   <p>
                     This is why sellers should estimate net proceeds before deciding on a listing
@@ -627,6 +628,20 @@ export default function Calculator() {
                 </div>
               </section>
             </div>
+
+            <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <h3 className="text-xl font-semibold">Plan the next payment</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Selling and buying again? Use the mortgage calculator to estimate a monthly payment
+                for the next home before you compare offers or moving plans.
+              </p>
+              <a
+                href="/mortgage-calculator"
+                className="mt-4 inline-flex rounded-2xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Mortgage Calculator -&gt;
+              </a>
+            </section>
 
             <section className="mt-12 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <div className="max-w-3xl">
