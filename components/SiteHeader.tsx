@@ -3,11 +3,16 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
+const calculatorLinks = [
   { href: '/seller-net-proceeds-calculator', label: 'Seller Net Proceeds' },
   { href: '/buyer-closing-cost-calculator', label: 'Buyer Closing Costs' },
   { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
+  { href: '/rental-property-calculator', label: 'Rental Property' },
+];
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -15,6 +20,8 @@ const navLinks = [
 export default function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCalculatorMenuOpen, setIsCalculatorMenuOpen] = useState(false);
+  const isCalculatorActive = calculatorLinks.some((link) => pathname === link.href);
 
   return (
     <header className="border-b border-slate-200 bg-white">
@@ -41,16 +48,59 @@ export default function SiteHeader() {
         </div>
 
         <nav className="mt-4 hidden flex-wrap gap-x-4 gap-y-2 text-sm font-medium text-slate-600 md:flex md:justify-end">
-          {navLinks.map((link) => {
+          <a
+            href="/"
+            className={`hover:text-slate-950 ${pathname === '/' ? 'font-bold underline' : ''}`}
+            aria-current={pathname === '/' ? 'page' : undefined}
+          >
+            Home
+          </a>
+
+          <div className="group relative">
+            <button
+              type="button"
+              className={`inline-flex items-center gap-1 hover:text-slate-950 ${
+                isCalculatorActive ? 'font-bold underline' : ''
+              }`}
+              aria-haspopup="menu"
+            >
+              Calculators
+            </button>
+
+            <div
+              className="invisible absolute left-0 top-full z-50 w-64 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+              role="menu"
+            >
+              <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-lg">
+                {calculatorLinks.map((link) => {
+                  const isActive = pathname === link.href;
+
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className={`block rounded-xl px-4 py-3 text-sm hover:bg-slate-50 hover:text-slate-950 ${
+                        isActive ? 'font-bold text-slate-950 underline' : 'text-slate-700'
+                      }`}
+                      aria-current={isActive ? 'page' : undefined}
+                      role="menuitem"
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {navLinks.slice(1).map((link) => {
             const isActive = pathname === link.href;
 
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className={`hover:text-slate-950 ${
-                  isActive ? 'font-bold underline' : ''
-                }`}
+                className={`hover:text-slate-950 ${isActive ? 'font-bold underline' : ''}`}
                 aria-current={isActive ? 'page' : undefined}
               >
                 {link.label}
@@ -94,7 +144,70 @@ export default function SiteHeader() {
           </div>
 
           <nav className="mt-8 grid gap-2 text-lg font-medium">
-            {navLinks.map((link) => {
+            <a
+              href="/"
+              className={`rounded-2xl px-4 py-4 text-white/90 hover:bg-white/10 hover:text-white ${
+                pathname === '/' ? 'font-bold underline' : ''
+              }`}
+              aria-current={pathname === '/' ? 'page' : undefined}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </a>
+
+            <div>
+              <button
+                type="button"
+                className={`flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left text-white/90 hover:bg-white/10 hover:text-white ${
+                  isCalculatorActive ? 'font-bold underline' : ''
+                }`}
+                onClick={() => setIsCalculatorMenuOpen((current) => !current)}
+                aria-haspopup="menu"
+                aria-expanded={isCalculatorMenuOpen}
+                aria-controls="mobile-calculator-menu"
+              >
+                <span>Calculators</span>
+                <span
+                  className={`text-xl leading-none transition-transform ${
+                    isCalculatorMenuOpen ? 'rotate-180' : ''
+                  }`}
+                  aria-hidden="true"
+                >
+                  ^
+                </span>
+              </button>
+
+              <div
+                id="mobile-calculator-menu"
+                className={`grid overflow-hidden transition-all duration-300 ease-out ${
+                  isCalculatorMenuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="min-h-0 overflow-hidden pl-4">
+                  <div className="mt-1 grid gap-1 border-l border-white/15 pl-3">
+                    {calculatorLinks.map((link) => {
+                      const isActive = pathname === link.href;
+
+                      return (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          className={`rounded-2xl px-4 py-3 text-base text-white/80 hover:bg-white/10 hover:text-white ${
+                            isActive ? 'font-bold underline' : ''
+                          }`}
+                          aria-current={isActive ? 'page' : undefined}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {link.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {navLinks.slice(1).map((link) => {
               const isActive = pathname === link.href;
 
               return (

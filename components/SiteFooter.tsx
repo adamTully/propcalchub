@@ -11,6 +11,12 @@ export default function SiteFooter() {
         </div>
 
         <nav className="flex flex-wrap gap-5 md:justify-end">
+          <a href="/rental-property-calculator" className="hover:text-slate-900">
+            Rental Property Calculator
+          </a>
+          <a href="/blog" className="hover:text-slate-900">
+            Blog
+          </a>
           <a href="/about" className="hover:text-slate-900">
             About
           </a>
