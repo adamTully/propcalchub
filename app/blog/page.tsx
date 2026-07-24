@@ -1,4 +1,5 @@
 import { contentExpansionArticles } from '@/lib/contentExpansionArticles';
+import { mortgageDecisionArticles } from '@/lib/mortgageDecisionArticles';
 
 export const metadata = {
   title: 'Real Estate Articles | PropCalcHub',
@@ -50,7 +51,15 @@ const existingArticles = [
 const groups = [
   {
     title: 'Mortgage',
-    articles: contentExpansionArticles.filter((article) => article.cluster === 'Mortgage'),
+    articles: [
+      ...mortgageDecisionArticles.map((article) => ({
+        slug: article.slug,
+        cluster: 'Mortgage',
+        title: article.title,
+        description: article.description,
+      })),
+      ...contentExpansionArticles.filter((article) => article.cluster === 'Mortgage'),
+    ],
   },
   {
     title: 'Buyer Closing Costs',
