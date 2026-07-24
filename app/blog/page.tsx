@@ -1,5 +1,7 @@
 import { contentExpansionArticles } from '@/lib/contentExpansionArticles';
+import { buyerDecisionArticles } from '@/lib/buyerDecisionArticles';
 import { mortgageDecisionArticles } from '@/lib/mortgageDecisionArticles';
+import { sellerDecisionArticles } from '@/lib/sellerDecisionArticles';
 
 export const metadata = {
   title: 'Real Estate Articles | PropCalcHub',
@@ -63,11 +65,27 @@ const groups = [
   },
   {
     title: 'Buyer Closing Costs',
-    articles: contentExpansionArticles.filter((article) => article.cluster === 'Buyer Closing Costs'),
+    articles: [
+      ...buyerDecisionArticles.map((article) => ({
+        slug: article.slug,
+        cluster: 'Buyer Closing Costs',
+        title: article.title,
+        description: article.description,
+      })),
+      ...contentExpansionArticles.filter((article) => article.cluster === 'Buyer Closing Costs'),
+    ],
   },
   {
     title: 'Seller Net Proceeds',
-    articles: contentExpansionArticles.filter((article) => article.cluster === 'Seller Net Proceeds'),
+    articles: [
+      ...sellerDecisionArticles.map((article) => ({
+        slug: article.slug,
+        cluster: 'Seller Net Proceeds',
+        title: article.title,
+        description: article.description,
+      })),
+      ...contentExpansionArticles.filter((article) => article.cluster === 'Seller Net Proceeds'),
+    ],
   },
 ];
 
