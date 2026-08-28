@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 
@@ -409,6 +409,22 @@ export default function BuyerClosingCostCalculator() {
               </div>
             </section>
 
+            <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl font-semibold">Methodology and state assumptions</h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  PropCalcHub estimates buyer costs from editable inputs and state-level defaults.
+                  The ZIP code helps select a state estimate, but lender charges, title quotes,
+                  prepaid taxes, insurance, escrow reserves, credits, and closing date can change
+                  the final cash-to-close number.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3 text-sm font-medium">
+                  <a href="/methodology" className="rounded-full bg-slate-100 px-4 py-2 hover:bg-slate-200">Calculator methodology</a>
+                  <a href="/cash-to-close" className="rounded-full bg-slate-100 px-4 py-2 hover:bg-slate-200">Cash to close guide</a>
+                </div>
+              </div>
+            </section>
+
             <div className="mt-6">
               <AdSlot slot="1189421214" minHeight="min-h-[250px]" />
             </div>
@@ -583,14 +599,14 @@ export default function BuyerClosingCostCalculator() {
                   className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
                 >
                   <span>Seller Net Proceeds Calculator</span>
-                  <span>→</span>
+                  <span>â†’</span>
                 </a>
                 <a
                   href="/"
                   className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
                 >
                   <span>View all calculators</span>
-                  <span>→</span>
+                  <span>â†’</span>
                 </a>
               </div>
             </section>
@@ -640,7 +656,7 @@ export default function BuyerClosingCostCalculator() {
               }`}
               aria-hidden="true"
             >
-              ↑
+              â†‘
             </span>
           </button>
 
@@ -674,3 +690,4 @@ export default function BuyerClosingCostCalculator() {
     </main>
   );
 }
+

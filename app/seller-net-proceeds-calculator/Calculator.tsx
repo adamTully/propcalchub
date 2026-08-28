@@ -221,14 +221,6 @@ export default function Calculator() {
     <main className="min-h-screen bg-slate-50 pb-36 text-slate-900 lg:pb-0">
       <div className="mx-auto max-w-[1600px] px-4 py-10 md:px-6 lg:px-8">
         <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)_180px]">
-          {/* LEFT SIDEBAR AD - paused for initial AdSense review / UX.
-          <aside className="hidden xl:block">
-            <div className="sticky top-6">
-              <AdSlot label="Left sidebar ad" minHeight="min-h-[600px]" />
-            </div>
-          </aside>
-          */}
-
           <aside className="hidden xl:block" aria-hidden="true" />
 
           <div>
@@ -611,7 +603,7 @@ export default function Calculator() {
                     className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
                   >
                     <span>Buyer Closing Cost Calculator</span>
-                    <span>→</span>
+                    <span>â†’</span>
                   </a>
 
                   {['Monthly Payment Calculator', 'Offer Comparison Tool', 'Rent vs Sell Calculator'].map(
@@ -621,7 +613,7 @@ export default function Calculator() {
                         className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
                       >
                         <span>{tool}</span>
-                        <span>→</span>
+                        <span>â†’</span>
                       </button>
                     ),
                   )}
@@ -683,12 +675,6 @@ export default function Calculator() {
                 </ul>
               </div>
             </section>
-
-            {/* PRE-FAQ AD - paused for initial AdSense review / UX.
-            <div className="mt-6">
-              <AdSlot slot="xxxxxx" minHeight="min-h-[250px]" />
-            </div>
-            */}
 
             <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
               <div className="max-w-3xl">
@@ -788,22 +774,13 @@ export default function Calculator() {
                       href="/buyer-closing-cost-calculator"
                       className="text-sm font-medium text-blue-600 underline hover:text-blue-800"
                     >
-                      Buying instead? Estimate your buyer closing costs →
+                      Buying instead? Estimate your buyer closing costs â†’
                     </a>
                   </div>
                 </div>
               </div>
             </section>
           </div>
-
-          {/* RIGHT SIDEBAR AD - paused for initial AdSense review / UX.
-          <aside className="hidden xl:block">
-            <div className="sticky top-6">
-              <AdSlot slot="xxxxxxxxx" minHeight="min-h-[600px]" />
-            </div>
-          </aside>
-          */}
-
           <aside className="hidden xl:block" aria-hidden="true" />
         </div>
       </div>
@@ -856,20 +833,14 @@ export default function Calculator() {
                 }`}
                 aria-hidden="true"
               >
-                ↑
+                â†‘
               </span>
             </button>
           </div>
         </div>
       </div>
-
-      {/* MOBILE STICKY AD - paused for initial AdSense review / UX.
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white p-2 shadow-[0_-4px_16px_rgba(15,23,42,0.08)] xl:hidden">
-        <AdSlot label="Mobile sticky ad" minHeight="min-h-[64px]" className="mx-auto max-w-md rounded-xl" />
-        <!---use this syntax below, check the format from the old one above is correct-->
-        <AdSlot slot="xxxxxx" minHeight="min-h-[64px]" />
-      </div>
-      */}
     </main>
   );
 }
+
+

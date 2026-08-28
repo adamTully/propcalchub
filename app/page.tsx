@@ -84,9 +84,6 @@ export default function Home() {
           </p>
         </section>
 
-        <div className="mt-10">
-          <AdSlot slot="6968136162" minHeight="min-h-[90px]" />
-        </div>
 
         <section className="mt-12">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -103,7 +100,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
             {calculators.map((calculator) => (
               <a
                 key={calculator.href}
@@ -126,6 +123,41 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <section className="mt-10">
+          <h2 className="text-2xl font-semibold">Reference guides</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+            Use these guides to understand the assumptions behind the calculators, compare common
+            real estate costs, and prepare better questions before you review final numbers with a
+            lender, title company, escrow officer, or closing attorney.
+          </p>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <a href="/closing-costs" className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md">
+              <h3 className="text-base font-semibold">Closing Costs Guide</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Learn what closing costs include and how buyer and seller expenses differ.</p>
+            </a>
+            <a href="/transfer-taxes-by-state" className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md">
+              <h3 className="text-base font-semibold">Transfer Taxes by State</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Compare state-level transfer tax estimates, payer assumptions, and local variation notes.</p>
+            </a>
+            <a href="/seller-closing-costs" className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md">
+              <h3 className="text-base font-semibold">Seller Closing Costs Guide</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">See which costs reduce net proceeds after payoff, commission, taxes, and credits.</p>
+            </a>
+            <a href="/cash-to-close" className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md">
+              <h3 className="text-base font-semibold">Cash to Close Guide</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Understand how down payment, closing costs, prepaid expenses, and credits combine.</p>
+            </a>
+            <a href="/methodology" className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md">
+              <h3 className="text-base font-semibold">Calculator Methodology</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Review how PropCalcHub estimates fees, payments, transfer taxes, and limitations.</p>
+            </a>
+          </div>
+        </section>
+
+        <div className="mt-10">
+          <AdSlot slot="6968136162" minHeight="min-h-[90px]" />
+        </div>
 
         <section className="mx-auto mt-14 max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-semibold">What is PropCalcHub?</h2>
@@ -244,3 +276,6 @@ export default function Home() {
     </main>
   );
 }
+
+
+

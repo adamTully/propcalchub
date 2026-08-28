@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 
@@ -322,7 +322,7 @@ export default function MortgageCalculator() {
             </section>
 
             <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <h3 className="text-xl font-semibold">Related tools</h3>
+              <h3 className="text-xl font-semibold">Related tools and guides</h3>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <a
                   href="/seller-net-proceeds-calculator"
@@ -394,3 +394,4 @@ export default function MortgageCalculator() {
     </main>
   );
 }
+
