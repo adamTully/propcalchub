@@ -957,27 +957,6 @@ function JsonLd({ article }: { article: SellerDecisionArticle }) {
   );
 }
 
-function MediaSection({ article }: { article: SellerDecisionArticle }) {
-  return (
-    <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
-      <h2 className="text-2xl font-semibold">Watch the original video</h2>
-      <div className="mt-5 overflow-hidden rounded-2xl bg-slate-950">
-        <iframe
-          className="aspect-video w-full"
-          src={article.media.embedUrl}
-          title={`${article.title} video from ${article.media.channel}`}
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          loading="lazy"
-        />
-      </div>
-      <p className="mt-3 text-sm text-slate-500">
-        Video source: {article.media.channel} on YouTube
-      </p>
-    </section>
-  );
-}
-
 export function SellerDecisionArticlePage({ slug }: { slug: string }) {
   const article = getSellerDecisionArticle(slug);
   const tocSections = article.sections.filter((section) => section.id !== 'final-thoughts');
@@ -1004,8 +983,6 @@ export function SellerDecisionArticlePage({ slug }: { slug: string }) {
             ))}
           </div>
         </header>
-
-        <MediaSection article={article} />
 
         <nav className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200" aria-label="Table of contents">
           <h2 className="text-2xl font-semibold">Table of Contents</h2>

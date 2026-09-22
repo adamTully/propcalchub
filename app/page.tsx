@@ -1,37 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
-
-function AdSlot({
-  slot,
-  className = '',
-  minHeight = 'min-h-[90px]',
-}: {
+function AdSlot(props: {
   slot: string;
   className?: string;
   minHeight?: string;
 }) {
-  useEffect(() => {
-    try {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  return (
-    <div className={`overflow-hidden rounded-2xl bg-white ${minHeight} ${className}`}>
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block' }}
-        data-ad-client="ca-pub-2489602416184279"
-        data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-    </div>
-  );
+  void props;
+  return null;
 }
 
 const calculators = [

@@ -1,4 +1,3 @@
-import { contentExpansionArticles } from '@/lib/contentExpansionArticles';
 import { buyerDecisionArticles } from '@/lib/buyerDecisionArticles';
 import { mortgageDecisionArticles } from '@/lib/mortgageDecisionArticles';
 import { sellerDecisionArticles } from '@/lib/sellerDecisionArticles';
@@ -12,44 +11,6 @@ export const metadata = {
   },
 };
 
-const existingArticles = [
-  {
-    href: '/blog/how-to-use-a-rental-property-calculator-to-analyze-deals',
-    category: 'Rental analysis',
-    title: 'How to Use a Rental Property Calculator to Analyze Deals',
-    description:
-      'Learn how investors use rental property calculators to estimate cash flow, cap rate, cash-on-cash return, and deal quality before buying.',
-  },
-  {
-    href: '/blog/beginners-guide-to-buying-your-first-rental-property',
-    category: 'First rental property',
-    title: 'Beginner\u2019s Guide to Buying Your First Rental Property',
-    description:
-      'Learn how first-time investors can evaluate rental properties, estimate cash flow, understand financing, and avoid common beginner mistakes.',
-  },
-  {
-    href: '/blog/house-hacking-with-fha-loans-buy-a-duplex-with-3-5-down',
-    category: 'House hacking',
-    title: 'House Hacking with FHA Loans: How to Buy a Duplex with 3.5% Down',
-    description:
-      'See how house hacking can help buyers live in one unit, rent the other, and estimate the numbers before buying a duplex.',
-  },
-  {
-    href: '/blog/is-the-housing-market-about-to-crash',
-    category: 'Market context',
-    title: 'Is the Housing Market About to Crash? How to Think About the Data',
-    description:
-      'Learn how buyers, sellers, and investors can think about crash headlines, supply, demand, mortgage rates, and local market risk.',
-  },
-  {
-    href: '/blog/five-mistakes-to-avoid-when-buying-your-first-rental-property',
-    category: 'Rental mistakes',
-    title: 'Five Mistakes to Avoid When Buying Your First Rental Property',
-    description:
-      'Avoid common first-rental mistakes such as underestimating expenses, overpaying, skipping due diligence, and ignoring reserves.',
-  },
-];
-
 const groups = [
   {
     title: 'Mortgage',
@@ -60,7 +21,6 @@ const groups = [
         title: article.title,
         description: article.description,
       })),
-      ...contentExpansionArticles.filter((article) => article.cluster === 'Mortgage'),
     ],
   },
   {
@@ -72,7 +32,6 @@ const groups = [
         title: article.title,
         description: article.description,
       })),
-      ...contentExpansionArticles.filter((article) => article.cluster === 'Buyer Closing Costs'),
     ],
   },
   {
@@ -84,7 +43,6 @@ const groups = [
         title: article.title,
         description: article.description,
       })),
-      ...contentExpansionArticles.filter((article) => article.cluster === 'Seller Net Proceeds'),
     ],
   },
 ];
@@ -160,20 +118,6 @@ export default function BlogPage() {
               </div>
             </section>
           ))}
-
-          <section>
-            <div className="mb-5">
-              <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                More guides
-              </p>
-              <h2 className="mt-1 text-2xl font-semibold">Rental Property and Market Context</h2>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {existingArticles.map((article) => (
-                <ArticleCard key={article.href} {...article} />
-              ))}
-            </div>
-          </section>
         </div>
       </div>
     </main>

@@ -398,7 +398,7 @@ export const mortgageDecisionArticles: MortgageDecisionArticle[] = [
     relatedLinks: [
       { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
       { href: '/blog/extra-mortgage-payments-early-principal-paydown', label: 'Extra Mortgage Payments and Early Principal Paydown' },
-      { href: '/blog/how-mortgage-payments-are-calculated', label: 'How Mortgage Payments Are Calculated' },
+      { href: '/mortgage-calculator', label: 'Test a Mortgage Payment Scenario' },
       { href: '/blog', label: 'All PropCalcHub Articles' },
     ],
     sources: [
@@ -527,8 +527,8 @@ export const mortgageDecisionArticles: MortgageDecisionArticle[] = [
           'If your servicer added a shortage repayment, add that separately in your household budget. That keeps the ongoing escrow increase distinct from the temporary repayment amount.',
           <>
             For broader payment mechanics, see{' '}
-            <a href="/blog/how-mortgage-payments-are-calculated" className="font-medium text-blue-600 underline">
-              How Mortgage Payments Are Calculated
+            <a href="/mortgage-calculator" className="font-medium text-blue-600 underline">
+              Mortgage Calculator
             </a>
             .
           </>,
@@ -574,7 +574,7 @@ export const mortgageDecisionArticles: MortgageDecisionArticle[] = [
     ],
     relatedLinks: [
       { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
-      { href: '/blog/how-mortgage-payments-are-calculated', label: 'How Mortgage Payments Are Calculated' },
+      { href: '/mortgage-calculator', label: 'Test a Mortgage Payment Scenario' },
       { href: '/blog/how-to-compare-loan-estimates', label: 'How to Compare Loan Estimates Like a Pro' },
       { href: '/blog', label: 'All PropCalcHub Articles' },
     ],
@@ -628,8 +628,8 @@ export const mortgageDecisionArticles: MortgageDecisionArticle[] = [
           'The earlier a principal reduction happens, the more months it has to reduce future interest. That is why an extra payment in year two usually saves more interest than the same extra payment in year twenty-eight.',
           <>
             This connects directly to amortization. If you need the baseline first, read{' '}
-            <a href="/blog/what-is-an-amortization-schedule" className="font-medium text-blue-600 underline">
-              What Is an Amortization Schedule?
+            <a href="/methodology" className="font-medium text-blue-600 underline">
+              Calculator Methodology and Formulas
             </a>{' '}
             and then come back to the extra-payment comparison.
           </>,
@@ -749,7 +749,7 @@ export const mortgageDecisionArticles: MortgageDecisionArticle[] = [
     relatedLinks: [
       { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
       { href: '/blog/how-to-remove-pmi-faster', label: 'How to Remove PMI Faster' },
-      { href: '/blog/what-is-an-amortization-schedule', label: 'What Is an Amortization Schedule?' },
+      { href: '/methodology', label: 'Calculator Methodology and Formulas' },
       { href: '/blog', label: 'All PropCalcHub Articles' },
     ],
     sources: [
@@ -1124,23 +1124,6 @@ export function MortgageDecisionArticlePage({ slug }: { slug: string }) {
             ))}
           </div>
         </header>
-
-        <section className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
-          <h2 className="text-2xl font-semibold">Watch the original video</h2>
-          <div className="mt-5 overflow-hidden rounded-2xl bg-slate-950">
-            <iframe
-              className="aspect-video w-full"
-              src={article.video.embedUrl}
-              title={`${article.title} video from ${article.video.channel}`}
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-          <p className="mt-3 text-sm text-slate-500">
-            Video source: {article.video.channel} on YouTube
-          </p>
-        </section>
 
         <nav className="mt-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200" aria-label="Table of contents">
           <h2 className="text-2xl font-semibold">Table of Contents</h2>

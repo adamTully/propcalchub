@@ -523,8 +523,8 @@ export default function RentalPropertyCalculator() {
                   ['Buyer Closing Cost Calculator', '/buyer-closing-cost-calculator'],
                   ['Seller Net Proceeds Calculator', '/seller-net-proceeds-calculator'],
                   [
-                    'How to Use a Rental Property Calculator to Analyze Deals',
-                    '/blog/how-to-use-a-rental-property-calculator-to-analyze-deals',
+                    'Calculator Methodology and Formulas',
+                    '/methodology',
                   ],
                 ].map(([label, href]) => (
                   <a
